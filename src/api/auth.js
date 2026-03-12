@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL ?? '';
+const API_BASE = import.meta.env.VITE_API_URL ?? '';
 const TOKEN_KEY = 'accessToken';
 
 // 토큰 가져오기/저장하기
@@ -28,7 +28,7 @@ async function refreshToken() {
     isRefreshing = true;
     refreshPromise = (async () => {
         try {
-            const res = await fetch(`/api/auth/refresh`, {
+            const res = await fetch(`${API_BASE}/api/auth/refresh`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -67,7 +67,7 @@ async function request(path, options = {}, isRetry = false) {
         ...options.headers,
     };
 
-    const res = await fetch(`${path}`, {
+    const res = await fetch(`${API_BASE}${path}`, {
         ...options,
         headers,
         credentials: 'include',

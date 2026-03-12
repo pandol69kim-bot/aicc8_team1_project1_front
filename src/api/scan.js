@@ -9,7 +9,7 @@ export async function analyzeFoodImage(file) {
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await fetch(`/api/scan/food`, {
+  const res = await fetch(`${API_BASE}/api/scan/food`, {
     method: 'POST',
     body: formData,
     credentials: 'include',
@@ -35,7 +35,7 @@ export async function saveAiScan({ userId, imageFile, scanResult }) {
   formData.append('user_id', userId);
   formData.append('scan_result', JSON.stringify(scanResult));
 
-  const res = await fetch(`/api/scan/save-ai`, {
+  const res = await fetch(`${API_BASE}/api/scan/save-ai`, {
     method: 'POST',
     body: formData,
     credentials: 'include',
@@ -52,7 +52,7 @@ export async function saveAiScan({ userId, imageFile, scanResult }) {
  * @returns {Promise<{ success: boolean, foods: Array, totalCalories: number }>}
  */
 export async function reanalyzeFood(foods) {
-  const res = await fetch(`/api/scan/food/reanalyze`, {
+  const res = await fetch(`${API_BASE}/api/scan/food/reanalyze`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ foods }),
