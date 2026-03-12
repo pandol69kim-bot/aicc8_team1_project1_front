@@ -28,7 +28,7 @@ async function refreshToken() {
     isRefreshing = true;
     refreshPromise = (async () => {
         try {
-            const res = await fetch(`${BASE_URL}/api/auth/refresh`, {
+            const res = await fetch(`/api/auth/refresh`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -67,7 +67,7 @@ async function request(path, options = {}, isRetry = false) {
         ...options.headers,
     };
 
-    const res = await fetch(`${BASE_URL}${path}`, {
+    const res = await fetch(`${path}`, {
         ...options,
         headers,
         credentials: 'include',
