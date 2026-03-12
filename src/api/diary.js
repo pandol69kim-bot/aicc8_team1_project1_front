@@ -19,7 +19,7 @@ export async function saveScanToDiary({ userId, mealType, mealTime, aiScanId, im
   if (imageFile) formData.append('image', imageFile);
   formData.append('foods', JSON.stringify(foods));
 
-  const res = await ${API_BASE}/api/scan/save-diary`, {
+  const res = await fetch(`${API_BASE}/api/scan/save-diary`, {
     method: 'POST',
     // Content-Type 생략 (브라우저가 자동 설정)
     body: formData,
